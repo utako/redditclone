@@ -1,0 +1,12 @@
+<h1><%= @sub.name %></h1>
+<br>
+<% @sub.links.each do |link| %>
+  <%= link_to "#{link.title}", link.url %>
+  <% if link.submitter_id == current_user.id %>
+    <%= link_to "Edit Link", edit_link_url(link) %>
+  <% end %>
+  <br>
+<% end %>
+
+<%= link_to "Create Sub", new_sub_url %>
+

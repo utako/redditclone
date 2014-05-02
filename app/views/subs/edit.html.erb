@@ -1,0 +1,36 @@
+<h1>Edit Sub</h1>
+
+<form action="<%= sub_url(@sub) %>" method="post">
+  <%= form_auth_token %>
+  <input type='hidden' name='_method' value='put'>
+
+  <label>Sub Name
+    <input name="sub[name]" type='text' value="<%= @sub.name %>">
+  </label><br>
+  <br>
+  <% @sub.links.each_with_index do |link, i| %>
+    <fieldset>
+    <input type="hidden" name="links[<%= i %>][id]" value="<%= link.id %>">
+
+    <input type="hidden" name="links[<%= i %>][submitter_id]" value="<%= current_user.id %>">
+
+    <label>Title
+      <input type="text" name="links[<%= i %>][title]" value="<%= link.title %>">
+    </label>
+    <br>
+
+    <label>URL
+      <input type="text" name="links[<%= i %>][url]" value="<%= link.url %>">
+    </label>
+    <br>
+
+    <label>Body
+      <input type="text" name="links[<%= i %>][body]" value="<%= link.body %>">
+    </label>
+    <br>
+    </fieldset>
+    <br>
+  <% end %>
+  <br>
+  <input type='submit' value='New Sub'>
+</form>

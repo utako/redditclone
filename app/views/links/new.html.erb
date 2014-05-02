@@ -1,0 +1,33 @@
+<h1>Add a New Link</h1>
+
+<form action="<%= subs_url %>" method="post">
+  <%= form_auth_token %>
+  <% Sub.all.each do |sub| %>
+    <label><%= sub.name %>
+      <input type="checkbox" name="sub[sub_ids][]" value="<%= sub.id %>">
+    </label>
+  <% end %>
+  <br>
+  <fieldset>
+    <input type="hidden" name="link[id]" value="<%= link.id %>">
+    <input type="hidden" name="link[submitter_id]" value="<%= current_user.id %>">
+
+    <label>Title
+      <input type="text" name="link[title]" value="<%= link.title %>">
+    </label>
+    <br>
+
+    <label>URL
+      <input type="text" name="link[url]" value="<%= link.url %>">
+    </label>
+    <br>
+
+    <label>Body
+      <input type="text" name="link[body]" value="<%= link.body %>">
+    </label>
+    <br>
+  </fieldset>
+
+  <br>
+  <input type='submit' value='New Sub'>
+</form>
